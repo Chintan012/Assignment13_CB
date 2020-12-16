@@ -12,7 +12,8 @@ class Products extends Component {
             filterText: '',
             products: PRODUCTS
         }
-        this.handleFilter = this.handleFilter.bind(this)
+		this.handleFilter = this.handleFilter.bind(this)
+		this.handleUpdate = this.handleUpdate.bind(this)
         this.handleDestroy = this.handleDestroy.bind(this)
         this.handleSave = this.handleSave.bind(this)
     }
@@ -64,6 +65,13 @@ class Products extends Component {
 		}
     }
 
+	handleUpdate(productId) {
+		let currProduct = this.state.products.find(p => p.id === productId);
+		this.setState({
+			currProduct: currProduct
+		})
+	}
+
     handleDestroy(productId) {
 		fetch(base + "/products/delete/" + productId)
 		.then((res) => res.json())
@@ -82,7 +90,7 @@ class Products extends Component {
                 <ProductTable 
                     products={this.state.products}
                     filterText={this.state.filterText}
-                    onEdit={this.handleEdit}
+                    onUpdate={this.handleUpdate}
                     onDestroy={this.handleDestroy}></ProductTable>
                 <ProductForm
 					key={JSON.stringify(this.state.currProduct)}

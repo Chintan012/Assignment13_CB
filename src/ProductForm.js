@@ -41,7 +41,7 @@ class ProductForm extends Component {
 		const { product } = this.state;
 		return (
 			<form onSubmit={this.handleSave}>
-				<h4>{ ((product.productid != null) ? "Edit the existing product" : "Add a new product") }</h4>
+				<h4>{ ((product.productid != null) ? "Update the existing product" : "Add a new product") }</h4>
 				<p>
 					<label>Name <br />
 						<input type="text" className="form-control" name="name" onChange={this.handleChange} value={product.name} required />
